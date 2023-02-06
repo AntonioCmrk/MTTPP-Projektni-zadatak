@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-public class WebForm extends PageObject{
+public class WebShop extends PageObject{
     private final String page_name = "ABOUT YOU";
     private final String email = "RicardoNVargas@jourrapide.com";
     private final String password = "123456";
@@ -13,7 +13,7 @@ public class WebForm extends PageObject{
     private WebElement decline_btn;
     @FindBy(xpath = "/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input")
     private WebElement search_box;
-    @FindBy(xpath = "//*[@id=\"tads\"]/div/div/div/div/div[1]/a/div[1]/span")
+    @FindBy(xpath = "//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/a/h3")
     private WebElement page_link;
     @FindBy(xpath = "//*[@id=\"react-root\"]/header/div[3]/section/div[2]/a/div/span[1]")
     private WebElement page_sign1;
@@ -45,14 +45,9 @@ public class WebForm extends PageObject{
     private WebElement size;
     @FindBy(xpath = "//*[@id=\"page-content-wrapper\"]/section/div[2]/div/div/div/section/div[2]/div/button[1]/div")
     private WebElement add_to_basket_btn;
-    @FindBy(xpath = "//*[@id=\"page-content-wrapper\"]/div[3]/div[1]/div[2]/div[2]/div[2]/a")
-    private WebElement go_to_basket_btn;
     @FindBy(xpath = "//*[@id=\"page-content-wrapper\"]/div/section[2]/div/section[1]/div[1]/div/div[1]/div[2]/div/div[1]/div[1]/div/button/div")
     private WebElement remove_from_basket_btn;
-    @FindBy(xpath = "//*[@id=\"react-root\"]/header/div[3]/section/div[3]/div/div")
-    private WebElement log_out_btn;
-
-    public WebForm(WebDriver driver) {
+    public WebShop(WebDriver driver) {
         super(driver);
     }
     public void decline_cookies(){
@@ -103,20 +98,24 @@ public class WebForm extends PageObject{
             Thread.sleep(1000);
         }
         catch(InterruptedException e){}
-       // articles_box.submit();
         articles_box_submit.click();
     }
     public void pick_article(){
+        first_article.click();
+    }
+    public void add_to_basket(){
+        size_selector.click();
         try
         {
             Thread.sleep(1000);
         }
         catch(InterruptedException e){}
-        first_article.click();
-    }
-    public void add_to_basket(){
-        size_selector.click();
         size.click();
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e){}
         add_to_basket_btn.click();
         try
         {
@@ -125,23 +124,15 @@ public class WebForm extends PageObject{
         catch(InterruptedException e){}
 
     }
-    public void remove_from_basket(){
-        go_to_basket_btn.click();
+    public void remove_from_basket() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+        }
         remove_from_basket_btn.click();
-        try
-        {
+        try {
             Thread.sleep(5000);
+        } catch (InterruptedException e) {
         }
-        catch(InterruptedException e){}
-    }
-    public void log_out(){
-        log_in_btn1.click();
-        log_out_btn.click();
-        try
-        {
-            Thread.sleep(5000);
-        }
-        catch(InterruptedException e){}
-        Assert.assertEquals(page_sign1.getText() + " " + page_sign2.getText(), page_name);
     }
 }
