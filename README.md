@@ -5,7 +5,7 @@ Sastoji se od 6 testova:
 1. Testiranje google rezultata kada se upiše ime stranice u tražilicu.
 2. Testiranje prvog linka da li je link do Web trgovine.
 3. Testiranje log in opcije.
-4. Testiranje searck opcije.
+4. Testiranje search opcije.
 5. Testiranje opcije stavljanja u košaricu.
 6. Testiranje vađenja iz košarice.
 
